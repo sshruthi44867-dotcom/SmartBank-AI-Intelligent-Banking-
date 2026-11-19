@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SmartBank AI | Academic Demo</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head>
+<body>
+<header class="top">
+    <div class="brand">
+        <span class="logo">S</span>
+        <div>
+            <b>SmartBank AI</b>
+            <small>Intelligent Banking Demo</small>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#features">Features</a>
+
+        <!-- 25 Language Selector -->
+        <select id="languageSelect" aria-label="Choose language">
+            <option value="en">🇬🇧 English</option>
+            <option value="ta">🇮🇳 தமிழ்</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="te">తెలుగు</option>
+            <option value="ml">മലയാളം</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="bn">বাংলা</option>
+            <option value="mr">मराठी</option>
+            <option value="gu">ગુજરાતી</option>
+            <option value="pa">ਪੰਜਾਬੀ</option>
+            <option value="ur">اردو</option>
+            <option value="ne">नेपाली</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ar">العربية</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="pt">Português</option>
+            <option value="ru">Русский</option>
+            <option value="it">Italiano</option>
+            <option value="id">Bahasa Indonesia</option>
+            <option value="th">ไทย</option>
+            <option value="tr">Türkçe</option>
+        </select>
+
+        <button id="logout" class="hidden secondary">Logout</button>
+    </nav>
+</header>
+<select id="languageSelector" onchange="changeSmartBankLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="ta">தமிழ்</option>
+    <option value="hi">हिन्दी</option>
+    <option value="te">తెలుగు</option>
+    <option value="ml">മലയാളം</option>
+    <option value="kn">ಕನ್ನಡ</option>
+    <option value="bn">বাংলা</option>
+    <option value="mr">मराठी</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="pa">ਪੰਜਾਬੀ</option>
+    <option value="ur">اردو</option>
+    <option value="ne">नेपाली</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="ar">العربية</option>
+    <option value="zh-CN">中文</option>
+    <option value="ja">日本語</option>
+    <option value="ko">한국어</option>
+    <option value="pt">Português</option>
+    <option value="ru">Русский</option>
+    <option value="it">Italiano</option>
+    <option value="id">Indonesia</option>
+    <option value="th">ไทย</option>
+    <option value="tr">Türkçe</option>
+</select>
+<main>
+<section id="landing" class="hero"><div><p class="eyebrow">SMART • SIMPLE • SECURE</p><h1>Banking recovery,<br><em>made intelligent.</em></h1><p class="muted">A student project with simulated banking, account recovery and explainable risk checks.</p><button class="primary" id="showRegister">Create account</button> <button class="secondary" id="showLogin">Login</button><p class="notice">Educational demo only. No real bank, money, SMS or payment service is connected.</p></div><div class="hero-card"><span>SMARTBANK / DEMO</span><div class="chip"></div><h2>•••• •••• •••• 2048</h2><small>DEMO USER</small></div></section>
+<section id="auth" class="panel hidden"><div class="panel-title"><h2 id="authTitle">Create account</h2><button id="closeAuth" class="secondary">Close</button></div><form id="authForm"><div id="nameWrap"><label>Name</label><input id="name" placeholder="Full name"></div><label>Email</label><input id="email" type="email" required placeholder="you@example.com"><label>Password</label><input id="password" type="password" minlength="8" required placeholder="At least 8 characters"><button class="primary">Continue</button><p id="authMsg" class="message"></p></form></section>
+<section id="workspace" class="hidden">
+<div class="welcome">
+    <div>
+        <p class="eyebrow" data-i18n="workspace">YOUR WORKSPACE</p>
+        <h2>
+            <span data-i18n="welcome">Welcome</span>,
+            <span id="userName"></span>
+        </h2>
+        <p class="muted" data-i18n="dashboard_description">
+            Your academic demo banking dashboard
+        </p>
+    </div>
+    <span class="pill" data-i18n="demo_environment">
+        ● Demo environment
+    </span>
+</div>
+<div class="stats"><article class="stat"><small>Demo balance</small><strong id="balance">₹25,000.00</strong><small>Simulated only</small></article><article class="stat"><small>Account status</small><strong id="accountStatus">ACTIVE</strong><small>Demo recovery available</small></article><article class="stat"><small>Protection</small><strong>AI Risk Check</strong><small>Explainable rule-based model</small></article></div>
+<article class="panel bank-panel">
+<div class="panel-title"><div><p class="eyebrow">BANK PROFILE</p><h3>🏦 Select Your Bank</h3></div><span class="pill">20 Indian banks</span></div>
+<p class="muted">Choose a bank for this academic demo. This selection does not connect to or access a real bank account.</p>
+<label for="bankSearch">Search bank</label><input id="bankSearch" type="search" placeholder="Type bank name..." autocomplete="off">
+<label for="bankSelect">Available banks</label><select id="bankSelect"><option value="">Choose your bank</option></select>
+<div class="bank-selected"><span>Selected bank</span><strong id="selectedBank">No bank selected</strong></div>
+<button id="saveBank" class="primary" type="button">Save Bank Selection</button><p id="bankMsg" class="message" role="status"></p>
+</article>
+<div class="grid">
+<article class="panel"><h3>Simulated transfer</h3><form id="transferForm"><label>Recipient</label><input id="recipient" required placeholder="Demo recipient"><label>Amount (₹)</label><input id="amount" type="number" min="1" step=".01" required><button class="primary">Run demo transfer</button><p id="transferMsg" class="message"></p></form></article>
+<article class="panel"><h3>Account recovery</h3><p class="muted">Generate a local demo OTP; it is not sent by SMS.</p><button id="otpBtn" class="secondary">Generate demo OTP</button><p id="otpDisplay" class="otp"></p><label>Enter OTP</label><input id="otpInput" maxlength="6" inputmode="numeric"><button id="verifyOtp" class="primary">Verify and unlock</button><p id="recoveryMsg" class="message"></p></article>
+<article class="panel"><h3>Apply for service</h3><select id="appType"><option value="">Choose service</option><option>ATM Card</option><option>PIN Change</option><option>Account Recovery</option><option>New Account</option><option>KYC Update</option><option>Address Update</option><option>Account Statement</option></select><button id="applyBtn" class="primary">Submit application</button><p id="appMsg" class="message"></p><div id="apps" class="stack"></div></article>
+<article class="panel"><h3>Notifications</h3><div id="notifications" class="stack"></div></article>
+<article class="panel"><h3>Security centre</h3><button id="securityBtn" class="secondary">Load login history & alerts</button><div id="securityData" class="stack"></div></article>
+<article class="panel"><h3>Banking FAQ chatbot</h3><div id="chatLog" class="chatlog">Hello! Ask about balance, OTP, transfers, ATM card, PIN or application status.</div><div class="chatrow"><input id="chatQuestion" placeholder="Ask a demo banking question"><button id="chatSend" class="primary">Ask</button></div></article>
+</div>
+<article class="panel"><div class="panel-title"><h3>Recent transactions</h3><button id="refresh" class="secondary">Refresh</button></div><div class="tablewrap"><table><thead><tr><th>Type</th><th>Description</th><th>Amount</th><th>Date</th></tr></thead><tbody id="transactions"></tbody></table></div></article>
+<article class="panel"><h3>Monthly spending (demo)</h3><div id="chart" class="bars"></div></article>
+
+<!-- NEW SMARTBANK AI FEATURES -->
+
+<!-- 1. Face Recognition Demo -->
+<article class="panel">
+    <h3>👤 Face Recognition Login</h3>
+    <p class="muted">Camera-based academic login simulation.</p>
+    <video id="faceVideo" autoplay playsinline width="100%"></video>
+    <button id="faceStart" class="secondary" type="button">Start Camera</button>
+    <button id="faceLogin" class="primary" type="button">Verify Face</button>
+    <p id="faceMsg" class="message"></p>
+</article>
+
+<!-- 2. QR Payment -->
+<article class="panel">
+    <h3>📱 QR Payment</h3>
+    <input id="qrAmount" type="number" placeholder="Enter demo amount">
+    <button id="qrGenerate" class="primary" type="button">Generate QR</button>
+    <div id="qrResult"></div>
+    <p id="qrMsg" class="message"></p>
+</article>
+
+<!-- 3. Investment Portfolio -->
+<article class="panel">
+    <h3>📈 Investment Portfolio</h3>
+    <input id="investmentAmount" type="number" placeholder="Investment amount">
+    <select id="investmentType">
+        <option value="SIP">SIP</option>
+        <option value="FD">Fixed Deposit</option>
+        <option value="RD">Recurring Deposit</option>
+        <option value="MUTUAL_FUND">Mutual Fund</option>
+    </select>
+    <button id="investmentAdd" class="primary" type="button">Add Demo Investment</button>
+    <div id="investmentList"></div>
+    <p id="investmentMsg" class="message"></p>
+</article>
+
+<!-- 4. Credit Score -->
+<article class="panel">
+    <h3>💳 Credit Score Simulator</h3>
+    <button id="creditCalculate" class="primary" type="button">Calculate Score</button>
+    <h2 id="creditScore">--</h2>
+    <p id="creditMsg" class="message"></p>
+</article>
+
+<!-- 5. Recurring Payments -->
+<article class="panel">
+    <h3>🔁 Recurring Payments</h3>
+    <input id="recurringName" placeholder="Payment name">
+    <input id="recurringAmount" type="number" placeholder="Amount">
+    <select id="recurringFrequency">
+        <option value="MONTHLY">Monthly</option>
+        <option value="WEEKLY">Weekly</option>
+    </select>
+    <button id="recurringAdd" class="primary" type="button">Add Recurring Payment</button>
+    <div id="recurringList"></div>
+    <p id="recurringMsg" class="message"></p>
+</article>
+
+<!-- 6. Smart Budget Planner -->
+<article class="panel">
+    <h3>💰 Smart Budget Planner</h3>
+    <input id="budgetIncome" type="number" placeholder="Monthly income">
+    <input id="budgetExpense" type="number" placeholder="Monthly expenses">
+    <button id="budgetCalculate" class="primary" type="button">Calculate Budget</button>
+    <div id="budgetResult"></div>
+</article>
+
+<!-- 7. Advanced Fraud Alerts -->
+<article class="panel">
+    <h3>🛡️ Advanced Fraud Alerts</h3>
+    <button id="fraudLoad" class="primary" type="button">Check Security Alerts</button>
+    <div id="fraudResults" class="stack"></div>
+</article>
+
+<!-- 8. Customer Support -->
+<article class="panel">
+    <h3>🎧 Customer Support Tickets</h3>
+    <input id="supportSubject" placeholder="Issue subject">
+    <textarea id="supportMessage" placeholder="Describe your issue"></textarea>
+    <button id="supportSubmit" class="primary" type="button">Create Ticket</button>
+    <div id="supportList"></div>
+    <p id="supportMsg" class="message"></p>
+</article>
+
+<!-- 9. Virtual Debit Card -->
+<article class="panel">
+    <h3>💳 Virtual Debit Card</h3>
+    <button id="virtualCardGenerate" class="primary" type="button">Generate Demo Card</button>
+    <div id="virtualCardResult"></div>
+    <p id="virtualCardMsg" class="message"></p>
+</article>
+
+<!-- 10. Scheduled Transfers -->
+<article class="panel">
+    <h3>📅 Scheduled Transfers</h3>
+    <input id="scheduleRecipient" placeholder="Recipient">
+    <input id="scheduleAmount" type="number" placeholder="Amount">
+    <input id="scheduleDate" type="date">
+    <button id="scheduleSubmit" class="primary" type="button">Schedule Demo Transfer</button>
+    <div id="scheduleList"></div>
+    <p id="scheduleMsg" class="message"></p>
+</article>
+
+<!-- 11. Financial Health -->
+<article class="panel">
+    <h3>❤️ Financial Health Score</h3>
+    <button id="healthCalculate" class="primary" type="button">Analyze Financial Health</button>
+    <h2 id="healthScore">--</h2>
+    <div id="healthResult"></div>
+</article>
+
+<!-- 12. Multiple Accounts -->
+<article class="panel">
+    <h3>🏦 Multi Account Management</h3>
+    <input id="accountName" placeholder="Demo account name">
+    <select id="accountType">
+        <option value="SAVINGS">Savings</option>
+        <option value="CURRENT">Current</option>
+        <option value="FIXED_DEPOSIT">Fixed Deposit</option>
+    </select>
+    <button id="accountAdd" class="primary" type="button">Add Account</button>
+    <div id="accountList"></div>
+    <p id="accountMsg" class="message"></p>
+</article>
+
+<!-- 13. Multi Currency Wallet -->
+<article class="panel">
+    <h3>🌍 Multi Currency Wallet</h3>
+    <select id="currencyType">
+        <option value="INR">INR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="AED">AED</option>
+    </select>
+    <input id="currencyAmount" type="number" placeholder="Enter amount">
+    <button id="currencyConvert" class="primary" type="button">Convert Demo Currency</button>
+    <div id="currencyResult"></div>
+    <p id="currencyMsg" class="message"></p>
+</article>
+
+<!-- 14. Digital Document Vault -->
+<article class="panel">
+    <h3>📁 Digital Document Vault</h3>
+    <input id="documentFile" type="file" accept=".pdf,.jpg,.jpeg,.png">
+    <button id="documentUpload" class="primary" type="button">Upload Document</button>
+    <div id="documentList"></div>
+    <p id="documentMsg" class="message"></p>
+</article>
+
+<!-- 15. Advanced Admin Analytics -->
+<article class="panel">
+    <h3>📊 Advanced Admin Analytics</h3>
+    <button id="advancedAnalytics" class="primary" type="button">Load Analytics</button>
+    <div id="advancedAnalyticsResult"></div>
+</article>
+
+<article class="panel hidden" id="adminPanel"><h3>Admin panel</h3><button id="adminLoad" class="secondary">Load admin data</button><p id="adminStats" class="message"></p><div id="adminApps" class="stack"></div></article>
+</section>
+<section id="features" class="features"><p class="eyebrow">PROJECT MODULES</p><h2>One demo. Multiple workflows.</h2><div class="featuretiles"><article>01 <h3>Account Access</h3><p>Registration and session login.</p></article><article>02 <h3>Recovery</h3><p>Local demo OTP verification.</p></article><article>03 <h3>Risk Engine</h3><p>Explainable simulated risk checks.</p></article><article>04 <h3>Service Desk</h3><p>Application status tracking.</p></article></div></section>
+</main><footer>© 2026 SmartBank AI — Academic project demo. Never enter real banking credentials.</footer>
+<script src="{{ url_for('static',filename='script.js') }}"></script></body></html>

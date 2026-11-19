@@ -1,0 +1,67 @@
+*{box-sizing:border-box}body{margin:0;background:#100d20;color:#f5f1ff;font-family:Arial,sans-serif;line-height:1.5}.top{height:76px;padding:12px 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #30284a;background:#17122b;position:sticky;top:0;z-index:2}.brand{display:flex;align-items:center;gap:12px}.brand small{display:block;color:#a99fbe;font-size:11px}.logo{background:#8b5cf6;border-radius:13px;padding:9px 14px;font-weight:bold;font-size:22px}.top nav{display:flex;gap:20px;align-items:center}.top a{color:#d8cef2;text-decoration:none}.hero{padding:70px 8%;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;min-height:440px}.eyebrow{letter-spacing:2px;color:#b69aff;font-size:12px;font-weight:bold}.hero h1{font-size:clamp(36px,5vw,58px);line-height:1.08;margin:12px 0}.hero em{color:#b69aff;font-style:normal}.muted{color:#aaa2bb}.notice{font-size:12px;color:#bdb3d1;margin-top:25px}.hero-card{background:linear-gradient(135deg,#5b21b6,#241746);padding:28px;border-radius:24px;box-shadow:0 20px 60px #0005;max-width:390px;justify-self:center;width:100%;min-height:220px}.chip{width:44px;height:32px;background:#d7c28a;border-radius:7px;margin:34px 0 18px}.hero-card h2{letter-spacing:2px;font-size:18px}.hero-card small{color:#ddd}.primary,.secondary{border:0;border-radius:10px;padding:12px 17px;cursor:pointer;font-weight:bold;margin-top:10px}.primary{background:#8b5cf6;color:white}.secondary{background:#30264a;color:#e8ddff;border:1px solid #51416f}.panel{background:#1a1530;border:1px solid #33294d;border-radius:17px;padding:22px;margin:18px 0}.hidden{display:none!important}main{max-width:1180px;margin:auto;padding:0 22px}.panel-title,.welcome{display:flex;justify-content:space-between;align-items:center;gap:15px}.welcome{padding:25px 0}.welcome h2{margin:0}.pill{background:#2b2341;color:#cbb8ff;padding:8px 12px;border-radius:20px;font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{background:#211a39;padding:20px;border:1px solid #392e57;border-radius:15px}.stat small{display:block;color:#aaa2bb}.stat strong{display:block;font-size:24px;margin:7px 0;color:#d8c7ff}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}h3{margin-top:0}label{display:block;margin:12px 0 5px;color:#c9bfd9;font-size:13px}input,select{width:100%;padding:12px;background:#100d20;border:1px solid #44365f;border-radius:9px;color:white;outline:none}input:focus,select:focus{border-color:#a78bfa}form .primary{width:100%}.message{font-size:13px;color:#cbb8ff;min-height:18px}.otp{font-size:22px;letter-spacing:5px;color:#c4a7ff;font-weight:bold}.stack{font-size:13px;color:#c8bfd8}.stack p{padding:8px;border-bottom:1px solid #342b4c;margin:0}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:12px;border-bottom:1px solid #382e50}th{color:#bba7ef}.bars{display:flex;align-items:end;gap:14px;height:150px}.baritem{flex:1;text-align:center;font-size:11px;color:#bdb3d1}.bar{background:linear-gradient(#b69aff,#7042c4);border-radius:7px 7px 0 0;min-height:3px;margin-bottom:7px}.chatlog{height:110px;overflow:auto;background:#100d20;padding:12px;border-radius:10px;font-size:13px;color:#d9d0e8}.chatrow{display:flex;gap:8px}.chatrow button{white-space:nowrap}.features{padding:55px 0}.featuretiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.featuretiles article{background:#211a39;padding:20px;border-radius:14px;color:#bca8f0}.featuretiles p{color:#aaa2bb;font-size:13px}footer{text-align:center;color:#8e849f;padding:30px;font-size:12px}@media(max-width:760px){.hero{grid-template-columns:1fr;padding:45px 5%}.stats,.grid,.featuretiles{grid-template-columns:1fr}.top{padding:10px 4%}.top nav{gap:10px}.welcome{align-items:flex-start;flex-direction:column}}
+
+.bank-panel{margin-top:8px}.bank-selected{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:16px 0;padding:13px 15px;background:#100d20;border:1px solid #44365f;border-radius:10px}.bank-selected span{font-size:12px;color:#aaa2bb}.bank-selected strong{color:#d8c7ff;text-align:right}.bank-panel .primary{min-width:190px}@media(max-width:520px){.bank-selected{align-items:flex-start;flex-direction:column}.bank-selected strong{text-align:left}}
+
+/* NEW FEATURE DESIGN */
+textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    background: #100d20;
+    border: 1px solid #44365f;
+    border-radius: 9px;
+    color: white;
+    resize: vertical;
+}
+
+video {
+    background: #100d20;
+    border-radius: 12px;
+    margin: 10px 0;
+    max-height: 260px;
+}
+
+#qrResult img {
+    max-width: 180px;
+    display: block;
+    margin-top: 15px;
+}
+
+#virtualCardResult {
+    background: linear-gradient(135deg,#5b21b6,#241746);
+    padding: 25px;
+    border-radius: 16px;
+    margin-top: 15px;
+}
+
+#investmentList,
+#recurringList,
+#scheduleList,
+#accountList,
+#documentList {
+    margin-top: 15px;
+    color: #d8c7ff;
+}
+
+@media(max-width:760px) {
+    video {
+        width: 100%;
+    }
+}
+#languageSelect {
+    background: #211936;
+    color: #ffffff;
+    border: 1px solid #8b5cf6;
+    border-radius: 8px;
+    padding: 9px 12px;
+    margin: 0 10px;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    max-width: 150px;
+}
+
+#languageSelect option {
+    background: #17122b;
+    color: #ffffff;
+}
